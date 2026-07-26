@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Report Dashboard</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="brand">
+            <!-- Mismatched case filename reference: Logo.PNG -->
+            <img src="/static/images/Logo.PNG" alt="Dashboard Logo" class="logo-img">
+            <h1>Log Report Dashboard</h1>
+        </div>
+        <form action="/generate-report" method="POST">
+            <button type="submit" class="btn-primary">⚡ Generate Report</button>
+        </form>
+    </header>
+
+    <main class="container">
+        <div class="stats-grid">
+            <div class="card stat-card">
+                <h3>Total Log Entries</h3>
+                <p class="stat-value">{{ logs|length }}</p>
+            </div>
+            <div class="card stat-card">
+                <h3>System Health</h3>
+                <p class="stat-value status-ok">OPERATIONAL</p>
+            </div>
+            <div class="card stat-card">
+                <h3>Log Storage Path</h3>
+                <p class="stat-code">data/logs/</p>
+            </div>
+        </div>
+
+        <section class="card table-card">
+            <h2>Recent System Logs</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>Level</th>
+                        <th>Source File</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for log in logs %}
+                    <tr>
+                        <td class="timestamp">{{ log.timestamp }}</td>
+                        <td>
+                            <span class="badge badge-{{ log.level.lower() }}">{{ log.level }}</span>
+                        </td>
+                        <td class="source">{{ log.source }}</td>
+                        <td class="message">{{ log.message }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+</body>
+</html>

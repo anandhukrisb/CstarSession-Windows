@@ -1,0 +1,23 @@
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+*.venv
+
+# Byte-compiled / Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Temporary app outputs
+summary_report.txt
+
+# Docker files (created by students/workshop participants)
+Dockerfile
+.dockerignore
+
+# OS & Editor files
+.DS_Store
+.vscode/
+.idea/
