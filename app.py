@@ -28,16 +28,10 @@ def index():
 
 @app.route("/generate-report", methods=["POST"])
 def generate_report():
-    import glob
-    
-    # Cross-platform Python approach
-    with open(TEMP_REPORT, "w") as outfile:
-        # Sort files to ensure consistent order
-        for file_path in sorted(glob.glob(os.path.join(LOG_DIR, "*.log"))):
-            with open(file_path, "r") as infile:
-                for line in infile:
-                    if "DEBUG" not in line:
-                        outfile.write(line)
+    # Windows-only shell command execution using type and findstr
+    # This will explicitly fail on Linux
+    command = r'type data\logs\*.log | findstr /V "DEBUG" > ' + TEMP_REPORT
+    subprocess.run(command, shell=True, check=True)
                         
     return send_file(TEMP_REPORT, as_attachment=True, download_name="summary_report.txt")
 
