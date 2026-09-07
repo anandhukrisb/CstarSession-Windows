@@ -17,6 +17,9 @@ summary_report.txt
 Dockerfile
 .dockerignore
 
+# Workshop instructor materials
+Docker-Workshop-Guide.html
+
 # OS & Editor files
 .DS_Store
 .vscode/
