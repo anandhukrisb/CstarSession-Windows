@@ -1,47 +1,134 @@
 # Log Report Dashboard
 
-A lightweight internal web dashboard built with Python and Flask for viewing system log files and generating summary reports.
+A lightweight web dashboard built with Python and Flask for viewing system log files and generating summary reports.
+
+---
 
 ## Prerequisites
 
-- Python 3.9+
-- pip
-
-## Quick Start (Linux / macOS)
-
-1. Make the startup script executable and launch the server:
-   ```bash
-   chmod +x run.sh
-   ./run.sh
-   ```
-
-2. Open your browser and navigate to:
-   `http://localhost:5000`
+- **Python** 3.9 or higher
+- **pip** (Python package manager)
+- **Git**
 
 ---
 
-## Workshop Demo Scenario (Guaranteed Native Failure)
+## Getting Started
 
-This repository includes issues that cause it to fail natively on **both** Windows and Linux:
-- **Linux Native Failure (`PermissionError`)**: Clicking "Generate Report" attempts to write to `/var/log/summary_report.txt`. Linux blocks non-root users from writing to `/var/log`, causing the app to crash natively.
-- **Windows Native Failure**: Direct execution fails natively on Windows due to the Bash Startup script (`run.sh`), Unix path references, and shell command execution (`cat`, `grep`).
+### Step 1: Clone the Repository
+
+```bash
+git clone https://github.com/anandhukrisb/CstarSession-Windows.git
+cd CstarSession-Windows
+```
 
 ---
 
-## Docker Solution (The Ultimate Fix)
+### Step 2: Create a Virtual Environment
 
-To make the app run identically and successfully on Linux, macOS, and Windows without code modifications:
+#### On Linux / macOS
 
-1. Build the Docker image:
-   ```bash
-   docker build -t log-dashboard-alt .
-   ```
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
 
-2. Run the container:
-   ```bash
-   docker run -p 5000:5000 log-dashboard-alt
-   ```
+#### On Windows (Command Prompt)
 
-3. Access `http://localhost:5000` - The app works perfectly. 
-   - **For Windows users:** They get a Linux environment where bash, `cat`, and `grep` exist.
-   - **For Linux users:** The container isolates the application and runs it with root permissions inside the container, allowing it to safely write to `/var/log/summary_report.txt` without causing permission errors or affecting the host machine.
+```cmd
+python -m venv venv
+venv\Scripts\activate
+```
+
+#### On Windows (PowerShell)
+
+```powershell
+python -m venv venv
+venv\Scripts\Activate.ps1
+```
+
+> **Note:** If you get an error on PowerShell about execution policies, run this first:
+> ```powershell
+> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+> ```
+
+---
+
+### Step 3: Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+### Step 4: Run the Application
+
+#### On Linux / macOS
+
+```bash
+python3 app.py
+```
+
+Or using the startup script:
+
+```bash
+chmod +x run.sh
+./run.sh
+```
+
+#### On Windows
+
+```cmd
+python app.py
+```
+
+> **Note:** The `run.sh` script will **not work** on Windows as it is a Bash shell script.
+
+---
+
+### Step 5: Open in Browser
+
+Navigate to: **http://localhost:5000**
+
+You should see the Log Report Dashboard with system log entries displayed in a table.
+
+---
+
+## Features
+
+- View system logs from multiple log files (`app.log`, `auth.log`, `system.log`)
+- Generate a filtered summary report (removes DEBUG entries)
+- Download the summary report as a text file
+
+---
+
+## Try This
+
+1. Open the dashboard at `http://localhost:5000`
+2. Browse the log entries in the table
+3. Click the **"⚡ Generate Report"** button
+
+**What happened?** Did it work? Did it crash? Why?
+
+---
+
+## Project Structure
+
+```
+CstarSession-Windows/
+├── app.py                  ← Main Flask application
+├── requirements.txt        ← Python dependencies
+├── run.sh                  ← Bash startup script (Linux/macOS only)
+├── data/
+│   └── logs/
+│       ├── app.log         ← Application logs
+│       ├── auth.log        ← Authentication logs
+│       └── system.log      ← System logs
+├── templates/
+│   └── index.html          ← Dashboard web page
+└── static/
+    ├── css/style.css       ← Stylesheet
+    └── images/
+        ├── logo.png        ← Dashboard logo
+        └── Logo.PNG        ← Symlink to logo.png
+```
