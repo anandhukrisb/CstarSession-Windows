@@ -13,9 +13,6 @@ __pycache__/
 # Temporary app outputs
 summary_report.txt
 
-# Docker files (created by students/workshop participants)
-Dockerfile
-.dockerignore
 
 # Workshop instructor materials
 Docker-Workshop-Guide.html

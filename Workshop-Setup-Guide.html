@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pre-Workshop Setup Checklist</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #0f172a;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            min-height: 100vh;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card-wrapper {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 24px;
+            padding: 36px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e0e7ff;
+            color: #4338ca;
+            font-weight: 700;
+            font-size: 12px;
+            padding: 6px 16px;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 30px;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+        }
+
+        .os-box {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 18px;
+            padding: 20px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .os-box:hover {
+            border-color: #6366f1;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.1);
+        }
+
+        .os-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 19px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .step-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .step-num {
+            background: #4338ca;
+            color: white;
+            font-weight: 800;
+            font-size: 13px;
+            min-width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+            box-shadow: 0 4px 6px -1px rgba(67, 56, 202, 0.3);
+        }
+
+        .step-content {
+            font-size: 13px;
+            line-height: 1.45;
+            color: #334155;
+        }
+
+        .step-content strong {
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        .link-btn {
+            color: #4338ca;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1px solid #818cf8;
+        }
+
+        .warning-tag {
+            background: #fff1f2;
+            border: 1px dashed #f43f5e;
+            color: #be123c;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .note-tag {
+            background: #eff6ff;
+            border: 1px solid #93c5fd;
+            color: #1e40af;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .code-box {
+            background: #0f172a;
+            color: #38bdf8;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            padding: 6px 10px;
+            border-radius: 6px;
+            margin-top: 4px;
+            line-height: 1.5;
+        }
+
+        .verify-card {
+            background: linear-gradient(135deg, #064e3b 0%, #022c22 100%);
+            border-radius: 18px;
+            padding: 20px 24px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            box-shadow: 0 10px 25px -5px rgba(6, 78, 59, 0.4);
+        }
+
+        @media (max-width: 650px) {
+            .verify-card { flex-direction: column; text-align: center; }
+        }
+
+        .verify-info h3 {
+            font-size: 17px;
+            font-weight: 800;
+            color: #6ee7b7;
+            margin-bottom: 2px;
+        }
+
+        .verify-info p {
+            font-size: 12px;
+            color: #a7f3d0;
+        }
+
+        .cmd-pill {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid #10b981;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: #34d399;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        @media print {
+            body { background: white; padding: 0; min-height: auto; }
+            .card-wrapper { box-shadow: none; padding: 0; max-width: 100%; border-radius: 0; }
+            .os-box:hover { transform: none; box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-wrapper">
+        <div class="header">
+            <span class="badge">🚀 Hands-On Workshop Preparation</span>
+            <h1>Environment Setup Checklist</h1>
+            <p class="subtitle">Complete these steps on your laptop before coming to tomorrow's session!</p>
+        </div>
+
+        <div class="grid">
+            <!-- WINDOWS CARD -->
+            <div class="os-box">
+                <div class="os-header" style="color: #0284c7;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-13.051-1.851"/></svg>
+                    Windows Setup
+                </div>
+                
+                <div class="step-list">
+                    <div class="step-item">
+                        <div class="step-num">1</div>
+                        <div class="step-content">
+                            <strong>Install Git:</strong><br>
+                            Download from <a href="https://git-scm.com/download/win" class="link-btn" target="_blank">git-scm.com</a> and install.
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-num">2</div>
+                        <div class="step-content">
+                            <strong>Install Python 3.10+:</strong><br>
+                            Download from <a href="https://python.org" class="link-btn" target="_blank">python.org</a>.
+                            <div class="warning-tag">
+                                ⚠️ MUST check: <strong>"Add python.exe to PATH"</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-num">3</div>
+                        <div class="step-content">
+                            <strong>Enable WSL 2 (Required for Docker):</strong><br>
+                            Open PowerShell as Admin and run:
+                            <div class="code-box">wsl --install</div>
+                            <div class="note-tag">💡 Restart laptop after running command</div>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-num">4</div>
+                        <div class="step-content">
+                            <strong>Install Docker Desktop:</strong><br>
+                            Download from <a href="https://www.docker.com/products/docker-desktop/" class="link-btn" target="_blank">docker.com</a> and launch it.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LINUX CARD -->
+            <div class="os-box">
+                <div class="os-header" style="color: #ea580c;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.002 0c-4.417 0-8 3.582-8 8 0 2.222.906 4.233 2.37 5.688A12.015 12.015 0 0 0 0 24h24a12.015 12.015 0 0 0-6.37-10.312A7.962 7.962 0 0 0 20.002 8c0-4.418-3.583-8-8-8zm0 4a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/></svg>
+                    Linux Setup
+                </div>
+
+                <div class="step-list">
+                    <div class="step-item">
+                        <div class="step-num">1</div>
+                        <div class="step-content">
+                            <strong>Git & Python:</strong>
+                            <div class="code-box">sudo apt update<br>sudo apt install -y git python3 python3-pip</div>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-num">2</div>
+                        <div class="step-content">
+                            <strong>Docker Engine:</strong>
+                            <div class="code-box">sudo apt install -y docker.io<br>sudo usermod -aG docker $USER</div>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-num">3</div>
+                        <div class="step-content">
+                            <strong>Permissions:</strong><br>
+                            Log out & log back in to apply group privileges.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VERIFICATION CARD -->
+        <div class="verify-card">
+            <div class="verify-info">
+                <h3>✅ Final Verification Step</h3>
+                <p>Run this in Terminal or PowerShell to confirm Docker is working:</p>
+            </div>
+            <div class="cmd-pill">
+                $ docker run hello-world
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
